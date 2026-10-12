@@ -1,0 +1,17 @@
+Write a complete, single-file PHP script (with embedded HTML, CSS, and vanilla JavaScript) for a form titled "Kara David's Wish Note" (use this for the <title> and an <h2> heading).
+
+1. UI and Design: Create a polished, professional, and mobile-responsive layout using a flat-blue color theme. Use a centered card layout with a subtle drop shadow on a light gray background. Style the input fields, buttons, and success messages cleanly.
+
+2. Form Fields: The form must have the following inputs with exact maxlength properties:
+"Target's First Name" (name: FirstName, mandatory, 30 chars max)
+"Target's Last Name" (name: LastName, mandatory, max 30 chars)
+"Target's Government Position" (name: GovPosition, mandatory, max 20 chars)
+"Target's Location" (name: Location, optional, max 40 chars)
+
+3. Front-End Logic (The Modal): When the user clicks the submit button, use vanilla JavaScript to intercept the submission (e.preventDefault()). Display a custom-styled, centered modal overlay that asks the user to "Verify Target Data". The modal must display the values entered for all four fields (including Location). Include a "Cancel" button to close the modal, and a "Confirm & Send" button that bypasses the interception (form.submit()) to send the POST data.
+
+4. Backend Logic & The Intentional Flaw: At the top of the file, establish a local mysqli connection to a MariaDB database using $servername = "localhost", $username = "root", no password, and $dbname = "birthday_wishnote".
+
+When the POST request is received, capture all four variables from the form. However, intentionally introduce a flaw in the SQL query: write an INSERT INTO statement targeting the main_corrupt_politicians table, but completely omit the Location column in both the SQL string and the bind_param function. It should ONLY insert FirstName, LastName, and GovPosition.
+
+Upon successful execution, display a styled success message above the form saying: "Success! The wish note has been sent." Include a fallback error message if the query fails to prepare. Add clear comments explaining the intentional database insertion flaw.
